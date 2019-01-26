@@ -195,11 +195,14 @@ If I then click on Add Product, only the route parameter changes, so the Product
 not reinitialized. This feature of component reuse is important to understand as we reroute parameters.
 
 
+The router extracts any route parameters from the URL and supplies them to the component through its ActivatedRoute service. 
+The ActivatedRoute service is basically a one-stop shop for route information. 
+It provides access to the set of URL segments, route parameters, query parameters, route data, and more, as we'll see later in this course.
 
 
+The ActivatedRoute service has a snapshot that provides the initial state of the route, including the initial value of the route parameters.
+We access a route parameter using the paramMap.get method and pass in the route parameter's placeholder name. 
 
-
-
-
-
+The ActivatedRoute service also provides an observable. 
+The observable keeps a watch on the parameters and receives a notification every time the parameters change,
 
