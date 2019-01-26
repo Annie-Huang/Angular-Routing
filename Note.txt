@@ -102,6 +102,46 @@ component
 Order matters!
 
 
+Routing to Features
+##############################
+Importing the Angular Router without Service module through RouterModule.forChild([])
+- Service
+- Configuration
+- Directives
+
+Actually, behind the scenes, the routerLink directive calls router.navigate with a provided link parameters array 
+so everything that we can pass to router.navigate we can assign to the routerLink directive, and vice versa.
+
+Some parts of the current URL, such as secondary route information, is retained when navigating. 
+If we don't want this behavior, there is another navigate method we can use, navigateByUrl.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
