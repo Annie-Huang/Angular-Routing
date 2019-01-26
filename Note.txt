@@ -3,6 +3,10 @@ https://github.com/DeborahK/Angular-Routing
 http://blogs.msmvps.com/deborahk/angular-routing-problem-solver/
 
 
+All the rounter path for this system:
+http://localhost:4200/welcome
+
+
 1. Introduction
 #####################
 D:\react\Angular-Routing>npm install
@@ -70,18 +74,32 @@ An absolute redirect replaces the entire URL.
  Any one outlet can only display one routed component's template at a time.
 
 
+--------
+
+Change www.mysite.com/APM/welcome (brower) to (server)
+from APM/welcome
+to APM/index.html
+is through Requires Url rewriting. You can google how to do url rewriting in server side.
+
+Using Hash-based Urls
+RouterModule.forRoot([...],{ useHash: true })
 
 
+Basics Checklist: Setting Up
+Define the base path	<base href="/">
+Import RouterModule
+- Use RouterModule.forRoot() for app routes (one time only!)
+- Use RouterModule.forChild() for features
 
-
-
-
-
-
-
-
-
-
+Basics Checklist: Configuring Routes
+path: Url segment(s) for the route
+- No leading slash
+- '' for default route; '**' for wildcard route
+- Casing matters
+component
+- Not string name; not enclosed in quotes
+- Component must be imported
+Order matters!
 
 
 
