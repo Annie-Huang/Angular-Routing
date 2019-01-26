@@ -16,12 +16,22 @@ import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 
+// A key point to keep in mind is that the order of the routes in this array matters.
+//   The router uses a first match wins strategy when matching route paths.
+//   This means that more specific paths should always be before less specific paths, such as the wildcard path.
+// Redirects can be local or absolute. Local redirects replace a single URL segment with a different one, such as our examples here.
+//   An absolute redirect replaces the entire URL.
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent }
+    ]),
     ProductModule,
     UserModule,
     MessageModule
