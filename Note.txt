@@ -1,25 +1,70 @@
 https://github.com/Annie-Huang/Angular-Routing
+https://github.com/DeborahK/Angular-Routing
 http://blogs.msmvps.com/deborahk/angular-routing-problem-solver/
 
 
-
-Introduction
+1. Introduction
 #####################
 D:\react\Angular-Routing>npm install
 
 
+2. Routing Basics
+#######################
+Importing the Angular Router
+- RouterModule.forRoot()
+- Declares the router directives
+- Manages our route configuration
+- Registers the router service
+- Used once for the application
+
+@NgModule({
+	imports: [
+		BrowserModule,
+		RouterModule.forRoot([])
+	],
+	declarations: [
+		AppComponent
+	],
+	bootstrap: [AppComponent]
+})
+export classAppModule { }
+
+RouterModule.forChild()
+- Declares the router directives
+- Manages our route configuration
+- Does NOT register the router service
+- Used in feature modules
 
 
+This one will cause delay when serving the data.
+	InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
 
+-----
 
+[
+	{ path: 'welcome', component: WelcomeComponent },
+	{ path: '', redirectTo: 'welcome', pathMatch: 'full'},
+	{ path: '**', component: PageNotFoundComponent }
+]
+to
+[
+	{ path: 'home', component: WelcomeComponent },
+	{ path: 'welcome', redirectTo: 'home', pathMatch: 'full' },
+	{ path: '', redirectTo: 'home', pathMatch: 'full'},
+	{ path: '**', component: PageNotFoundComponent }
+]
 
+A key point to keep in mind is that the order of the routes in this array matters. 
+The router uses a first match wins strategy when matching route paths. 
+This means that more specific paths should always be before less specific paths, such as the wildcard path. 
 
+But there is one potential gotcha here. Redirects cannot be chained. The router will do one of these redirects, 
+but not both, during one navigation. So if the default route is activated, the route is redirected to the welcome route. 
 
+This imeans, you cannot use '' to redirectTo 'welcome' and then welcome redirectTo 'home'. the '' has to redirect to 'home'
 
-
-
-
-
+Redirects can be local or absolute. Local redirects replace a single URL segment with a different one, such as our examples here. 
+An absolute redirect replaces the entire URL.
 
 
 
