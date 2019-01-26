@@ -33,10 +33,14 @@ import { MessageModule } from './messages/message.module';
     //   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     //   { path: '**', component: PageNotFoundComponent }
     // ]),
-    AppRoutingModule,
+    // // Now that our application routes are in an external module, the route paths are processed in the order they are specified here,
+    // // so the wildcard path matches every path that is not the welcome or empty path, preventing navigation to any other path below it.
+    // //   We need to reorder our imports array to ensure that our wildcard route is last in the list of route paths.
+    // AppRoutingModule,
     ProductModule,
     UserModule,
-    MessageModule
+    MessageModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
