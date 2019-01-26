@@ -7,12 +7,12 @@ All the rounter path for this system:
 http://localhost:4200/welcome
 
 
-1. Introduction
+2. Introduction
 #####################
 D:\react\Angular-Routing>npm install
 
 
-2. Routing Basics
+3. Routing Basics
 #######################
 Importing the Angular Router
 - RouterModule.forRoot()
@@ -102,7 +102,7 @@ component
 Order matters!
 
 
-Routing to Features
+4. Routing to Features
 ##############################
 Importing the Angular Router without Service module through RouterModule.forChild([])
 - Service
@@ -183,7 +183,8 @@ Routing to Features Checklist: Routing Modules
 Separate out routes to their own routing module
 Keep route path order in mind
 
-
+5. Route Parameters
+##########################
 
 
 
