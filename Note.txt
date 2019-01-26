@@ -145,21 +145,43 @@ RouterModule.forRoot is processed after ProductModule | UserModule | MessageModu
     UserModule,
     MessageModule
   ]
+Order:
+	welcome
+	''
+	**
+	products
+	login
 Now that our application routes are in an external module, the route paths are processed in the order they are specified here, 
 so the wildcard path matches every path that is not the welcome or empty path, preventing navigation to any other path below it. 
 We need to reorder our imports array to ensure that our wildcard route is last in the list of route paths.
 
 
+Routing to Features Checklist: Configuration
+Import RouterModule
+- Be sure to use RouterModule.forChild()
+Configure the routes
+Order matters!
 
+Routing to Features Checklist: Naming Routes
+Use a common root path name for related feature routes
+- products
+- products/:id
+- products/:id/edit
 
+Routing to Features Checklist: Activate with Code
+Import the Router
+Add a dependency on the Router service
+- As a constructor parameter
+Use the Router service navigate method
+Pass in a link parameters array
+- First element is the root Url segment
+- All other elements are route parameters or additional Url segments
+this.router.navigate(['/welcome']);
+this.router.navigateByUrl('/welcome');
 
-
-
-
-
-
-
-
+Routing to Features Checklist: Routing Modules
+Separate out routes to their own routing module
+Keep route path order in mind
 
 
 
