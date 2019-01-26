@@ -206,3 +206,55 @@ We access a route parameter using the paramMap.get method and pass in the route 
 The ActivatedRoute service also provides an observable. 
 The observable keeps a watch on the parameters and receives a notification every time the parameters change,
 
+
+Back button:
+In product-detail.component.html:
+        <button class="btn btn-outline-secondary mr-3"
+                style="width:80px"
+                [routerLink]="['/products']">
+          <i class="fa fa-chevron-left"></i> Back
+        </button>
+
+Cancel button:
+In login.component.html:
+            <button class="btn btn-outline-secondary"
+                    type="button"
+                    style="width:80px"
+                    [routerLink]="['/welcome']">
+              Cancel
+            </button>
+
+
+Logout button:
+In app.component.html:
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         (click)="logOut()">Log Out</a>
+    </li>
+  logOut(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/welcome');	<< this one is because it want to clear any secondary route...
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

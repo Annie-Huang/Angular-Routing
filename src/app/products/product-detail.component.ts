@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
@@ -16,8 +15,7 @@ export class ProductDetailComponent implements OnInit{
   errorMessage: string;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // Since the URL is a string, we add a plus sign at the front to cast it to a number.
@@ -39,9 +37,5 @@ export class ProductDetailComponent implements OnInit{
     } else {
       this.pageTitle = 'No product found';
     }
-  }
-
-  onBackButtonClicked() {
-    this.router.navigateByUrl('/products');
   }
 }
