@@ -21,7 +21,12 @@ export class ProductEditComponent implements OnInit{
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Since the URL is a string, we add a plus sign at the front to cast it to a number.
+    // This does not handle the Add Product link.
+    // We retrieve the id from the ActivatedRoute service snapshot in the ngOnInit method when the component is initialized.
+    // But as we discussed earlier in this module, if only the parameters of the URL changes,
+    // the component is not initialized again, so the ngOnInit method is not executed again and we don't get a new initialized product.
+    // How do we handle a change in parameters?
+    // Instead of reading the route parameters from a snapshot, we watch for parameter changes using an observable.
     const id = +this.route.snapshot.paramMap.get('id');
     this.getProduct(id);
   }
