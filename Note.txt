@@ -67,7 +67,7 @@ Redirects can be local or absolute. Local redirects replace a single URL segment
 An absolute redirect replaces the entire URL.
 
 
-
+ Any one outlet can only display one routed component's template at a time.
 
 
 
