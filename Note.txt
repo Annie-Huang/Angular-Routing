@@ -116,7 +116,22 @@ Some parts of the current URL, such as secondary route information, is retained 
 If we don't want this behavior, there is another navigate method we can use, navigateByUrl.
 
 
+@NgModule({
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
+    RouterModule.forRoot([
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent }
+    ]),
+    ProductModule,
+    UserModule,
+    MessageModule
+  ],
 
+RouterModule.forRoot is processed after ProductModule | UserModule | MessageModule
 
 
 
