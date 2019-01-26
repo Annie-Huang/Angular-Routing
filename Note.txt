@@ -185,9 +185,14 @@ Keep route path order in mind
 
 5. Route Parameters
 ##########################
-
-
-
+When you click the link to change the current url from 
+http://localhost:4200/products/5/edit
+to 
+http://localhost:4200/products/0/edit
+To maximize performance and minimize changes to the browser's Document Object Model, or DOM, 
+the router reuses a component and its template if only the parameters of the route changes.
+If I then click on Add Product, only the route parameter changes, so the Product Edit component and its template are reused and 
+not reinitialized. This feature of component reuse is important to understand as we reroute parameters.
 
 
 
