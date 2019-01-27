@@ -299,9 +299,10 @@ We could pass the error information as an optional parameter on the route.
 We could override the error handler class and build a custom error handler. Or 
 we can define our resolved data to include error information. Let's go with this last one as it is a clean way for the resolver to pass error information to any route we choose. 
 
+To associate a route resolver with a route, we add it to the route configuration that we define within an Angular module. 
+This ensures that the data for the route is retrieved using the resolver before the routed component is activated. 
 
-
-
+Just ensure that each key for our resolve is unique, but they don't have to be unique across resolves
 
 
 
