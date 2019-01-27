@@ -282,6 +282,34 @@ The ActivatedRouteSnapshot contains information about the currently activated ro
 The RouterStateSnapshot represents the state of the application's router at a moment in time. 
 The RouterStateSnapshot is a tree of ActivatedRouteSnapshots.
 
+What do we do if there is an error? We have several options. 
+We could return false from the resolver, which would cancel the route, leaving the user on the prior route. 
+We could return a null product and continue, hoping the resolved route can handle a null product. Or 
+we could navigate to an error page. 
+Which mechanism you use for any particular error depends on your application, the error, and your user interface standards. 
+But regardless of the technique you use, there is no built-in resolver mechanism for passing error messages out of a route resolver to the prior or activated route. 
+
+If we return false and leave the user on the prior route, we have no way to tell the user why, and the app will just look broken. 
+If we return a null product and continue on to the requested route, we have no way to tell the user why the product is null. And again, the app looks broken. Or 
+if we navigate to an error page, we don't have any way to pass a message indicating what the error is. 
+
+As always in web development, there are many ways to work around this and provide an error message. 
+We could build a service that holds our error information. 
+We could pass the error information as an optional parameter on the route. 
+We could override the error handler class and build a custom error handler. Or 
+we can define our resolved data to include error information. Let's go with this last one as it is a clean way for the resolver to pass error information to any route we choose. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 All the nevigation links in the this project.
 =======================================================================================================================
