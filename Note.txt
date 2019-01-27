@@ -304,6 +304,25 @@ This ensures that the data for the route is retrieved using the resolver before 
 
 Just ensure that each key for our resolve is unique, but they don't have to be unique across resolves
 
+Route Resolvers Checklist: Building
+Create an Angular service
+Implement the Resolve<> interface
+Add a resolve method
+
+Route Resolvers Checklist: Configuring
+Configure using resolve
+Give each type of data a logical name
+Specify a reference to the route resolver
+
+Route Resolvers Checklist: Reading
+Read the data from the route
+- Snapshot
+- Data Observable
+
+
+
+
+
 
 
 
@@ -358,3 +377,9 @@ Product edit page:
 	ngOnInit	-> products/:id/edit	(through this.route.paramMap.subscribe(params => {const id = +params.get('id');...}))
 
 
+
+this.route.snapshot.paramMap.get('id');
+this.route.snapshot.queryParamMap.get('filterBy')
+this.route.snapshot.data['resolvedData'];
+
+this.route.paramMap.subscribe
