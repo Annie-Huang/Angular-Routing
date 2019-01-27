@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from '../../messages/message.service';
 
-import { Product } from '../product';
+import {Product, ProductResolved} from '../product';
 import { ProductService } from '../product.service';
 import {AuthService} from "../../user/auth.service";
 
@@ -32,21 +32,39 @@ export class ProductEditComponent implements OnInit{
     const id = +this.route.snapshot.paramMap.get('id');
     this.getProduct(id);*/
 
+/*
     this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
         this.getProduct(id);
       }
     )
+*/
+
+/*    // This will not handle when user in this page but click and Add Product button.
+    const resolvedData: ProductResolved = this.route.snapshot.data['resolvedData'];
+    this.errorMessage = resolvedData.error;
+    this.onProductRetrieved(resolvedData.product);
+    // Try http://localhost:4200/products/5/edit for success scenario.
+    // http://localhost:4200/products/25/edit for fail scenario: there is no product 25*/
+
+
+    this.route.data.subscribe(data => {
+      const resolvedData: ProductResolved = data['resolvedData'];
+      this.errorMessage = resolvedData.error;
+      this.onProductRetrieved(resolvedData.product);
+    });
+    // Try http://localhost:4200/products/1/edit, it works.
+    // Then try http://localhost:4200/products/0/edit, it works.
   }
 
-  getProduct(id: number): void {
-    this.productService.getProduct(id)
-      .subscribe(
-        (product: Product) => this.onProductRetrieved(product),
-        (error: any) => this.errorMessage = <any>error
-      );
-  }
+  // getProduct(id: number): void {
+  //   this.productService.getProduct(id)
+  //     .subscribe(
+  //       (product: Product) => this.onProductRetrieved(product),
+  //       (error: any) => this.errorMessage = <any>error
+  //     );
+  // }
 
   onProductRetrieved(product: Product): void {
     this.product = product;
