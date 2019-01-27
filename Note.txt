@@ -238,23 +238,45 @@ In app.component.html:
   }
 
 
+All the nevigation links in the this project.
+=======================================================================================================================
+Product edit page:
+	Cancel 		-> products 		(through [routerLink]="['/products']")
+	Save 		-> products 		(through router.navigate(['/products']));)
+	Delete 		-> products 		(through router.navigate(['/products']));)
+
+Product detail page:
+	Back 		-> products 		(through [routerLink]="['/products']")
+	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
+
+Product list page:
+	productName	-> products/:id		(through [routerLink]="['/products', product.id]")
+	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
+
+Login page:
+	Cancel		-> welcome		(through [routerLink]="['/welcome']")
+	Log in		-> products		(through router.navigate(['/products']);)
+
+Header:
+	Home		-> welcome		(through [routerLink]="['/welcome']")
+	Product List	-> products 		(through [routerLink]="['/products']")
+	Add Product	-> products/:id/edit	(through [routerLink]="['/products', 0, 'edit']")
+	Log in		-> login		(through [routerLink]="['/login']")
+	Log out		-> welcome		(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
+
+Landing page:
+	localhost:4200	-> ''			(through redirectTo: 'welcome')
+
+Page that is not available
+	localhost:4200/s -> '**'		PageNotFoundComponent component.
 
 
+All locations for retrieve parameter from url.
+=======================================================================================================================
+Product detail page:
+	ngOnInit	-> products/:id		(through route.snapshot.paramMap.get('id');)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Product edit page:
+	ngOnInit	-> products/:id/edit	(through this.route.paramMap.subscribe(params => {const id = +params.get('id');...}))
 
 
