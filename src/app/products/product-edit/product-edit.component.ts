@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import {AuthService} from "../../user/auth.service";
 
 @Component({
   templateUrl: './product-edit.component.html',
@@ -18,7 +19,8 @@ export class ProductEditComponent implements OnInit{
 
   constructor(private productService: ProductService,
               private messageService: MessageService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
 /*    // This does not handle the Add Product link.
@@ -101,5 +103,6 @@ export class ProductEditComponent implements OnInit{
     }
 
     // Navigate back to the product list
+    this.router.navigate(['/products']);
   }
 }
