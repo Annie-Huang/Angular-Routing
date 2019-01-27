@@ -254,7 +254,20 @@ Unlike optional parameters, they can be retained across routing paths
 We can set queryParamsHandling to preserve to preserve the current query parameters, or merge to merge the query parameters with any existing query parameters. 
 
 
+Route Parameters Checklist: Required Parameters
+Pass needed data on a route
+Example:
+- Detail component requires an id
 
+Route Parameters Checklist: Optional Parameters
+Pass optional or complex information to a route
+Example:
+- Search component passes search criteria to the List component to filter the data
+
+Route Parameters Checklist: Query Parameters
+Pass optional or complex information to a route that is optionally retained across routes		<-- You don't need to do this if it's not retained between routes. In which case, use optional parameter.
+Example:
+- List component passes its current user selections to the Detail component which passes them back 
 
 
 All the nevigation links in the this project.
