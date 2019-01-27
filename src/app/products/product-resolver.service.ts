@@ -1,11 +1,25 @@
 import { Injectable } from "@angular/core";
-import { Resolve } from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+
+import { Observable } from "rxjs";
 
 import { Product } from "./product";
+import { ProductService } from "./product.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductResolver implements Resolve<Product> {
 
+  constructor(private productService: ProductService) { }
+
+  // Love auto complete from Intellij!
+  // resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> | Promise<Product> | Product {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
+    const id = +route.paramMap.get('id');
+
+    // Notice that we don't subscribe here, the resolver manages the subscription for us and does not continue
+    // until the data is returned and the subscription is complete.
+    return this.productService.getProduct(id);
+  }
 }
