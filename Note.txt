@@ -320,8 +320,17 @@ Read the data from the route
 - Data Observable
 
 
+7. Child Routes
+##########################
+Using child routes, we define a route hierarchy to better organize, encapsulate, and navigate through our application. 
+Plus, it makes it easier to lazy load routes, improving the startup performance of the application. 
 
-
+Child Routes
+- Tabbed pages
+- Master/detail layouts
+- Embedded templates
+- Feature modules
+- Lazy loading
 
 
 
