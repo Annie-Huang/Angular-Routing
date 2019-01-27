@@ -238,6 +238,25 @@ In app.component.html:
   }
 
 
+Optional parameters are the ideal choice when conveying arbitrary or complex information during navigation. 
+Optional parameters are route-specific and scope to the particular URL segment, 
+so there is no risk of key name collisions with other URL segments. 
+	[routerLink]="['/products', {name: productName, code: productCode, startDate: availabilityStart, endDate: availabilityEnd}]"
+	localhost:4200/products;name=Controller;code=gmg;startDate=March%201%2C%202018;endDate=March%201%2C%202019
+
+If I do filter by in product list page and also click show image, then click into a product and then back again, the filtered information is gone.
+To define parameters that work across multiple routes, to the product detail page and back again for example, we use query parameters. 
+Just like optional parameters, we use query parameters to pass optional or complex information. 
+Unlike optional parameters, they can be retained across routing paths
+	localhost:4200/products/5?filterBy=er&showImage=true
+	localhost:4200/products?filterBy=er&showImage=true
+
+We can set queryParamsHandling to preserve to preserve the current query parameters, or merge to merge the query parameters with any existing query parameters. 
+
+
+
+
+
 All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
@@ -246,11 +265,13 @@ Product edit page:
 	Delete 		-> products 		(through router.navigate(['/products']));)
 
 Product detail page:
-	Back 		-> products 		(through [routerLink]="['/products']")
+	Back 		-> products 		(through [routerLink]="['/products']"
+							 queryParamsHandling="preserve")	<-- Keep the current queryParams in the URL when going to product list page.
 	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
 
 Product list page:
-	productName	-> products/:id		(through [routerLink]="['/products', product.id]")
+	productName	-> products/:id		(through [routerLink]="['/products', product.id]"
+							 [queryParams]="{filterBy: listFilter, showImage: showImage}")	<-- Add queryParams into the URL to pass product detail page.
 	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
 
 Login page:
@@ -259,7 +280,9 @@ Login page:
 
 Header:
 	Home		-> welcome		(through [routerLink]="['/welcome']")
-	Product List	-> products 		(through [routerLink]="['/products']")
+	Product List	-> products 		(through [routerLink]="['/products']"
+						 also has this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+    							  this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';) 	<-- Take the queryParam in the URL and apply the fitler onto the product list..
 	Add Product	-> products/:id/edit	(through [routerLink]="['/products', 0, 'edit']")
 	Log in		-> login		(through [routerLink]="['/login']")
 	Log out		-> welcome		(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
