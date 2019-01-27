@@ -343,38 +343,42 @@ Child Routes
 All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
-	Cancel 		-> products 		(through [routerLink]="['/products']")
-	Save 		-> products 		(through router.navigate(['/products']));)
-	Delete 		-> products 		(through router.navigate(['/products']));)
+	Cancel 		-> products 			(through [routerLink]="['/products']")
+	Save 		-> products 			(through router.navigate(['/products']));)
+	Delete 		-> products 			(through router.navigate(['/products']));)
+	Basic Information -> path: 'products/:id/edit' + path: 'info'	(through XXXX)
+	Search Tags 	  -> path: 'products/:id/edit' + path: 'tags'	(through YYYY)
 
 Product detail page:
-	Back 		-> products 		(through [routerLink]="['/products']"
-							 queryParamsHandling="preserve")	<-- Keep the current queryParams in the URL when going to product list page.
-	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
+	Back 		-> products 			(through [routerLink]="['/products']"
+							 	 queryParamsHandling="preserve")	<-- Keep the current queryParams in the URL when going to product list page.
+	Edit		-> products/:id/edit		(through [routerLink]="['/products', product.id, 'edit']")
 
 Product list page:
-	productName	-> products/:id		(through [routerLink]="['/products', product.id]"
-							 [queryParams]="{filterBy: listFilter, showImage: showImage}")	<-- Add queryParams into the URL to pass product detail page.
-	Edit		-> products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
+	productName	-> products/:id			(through [routerLink]="['/products', product.id]"
+							 	 [queryParams]="{filterBy: listFilter, showImage: showImage}")	<-- Add queryParams into the URL to pass product detail page.
+	Edit		-> (old) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
+			-> (new) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']"
+							 Then redirectTo: 'info')
 
 Login page:
-	Cancel		-> welcome		(through [routerLink]="['/welcome']")
-	Log in		-> products		(through router.navigate(['/products']);)
+	Cancel		-> welcome			(through [routerLink]="['/welcome']")
+	Log in		-> products			(through router.navigate(['/products']);)
 
 Header:
-	Home		-> welcome		(through [routerLink]="['/welcome']")
-	Product List	-> products 		(through [routerLink]="['/products']"
-						 also has this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
-    							  this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';) 	<-- Take the queryParam in the URL and apply the fitler onto the product list..
-	Add Product	-> products/:id/edit	(through [routerLink]="['/products', 0, 'edit']")
-	Log in		-> login		(through [routerLink]="['/login']")
-	Log out		-> welcome		(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
+	Home		-> welcome			(through [routerLink]="['/welcome']")
+	Product List	-> products 			(through [routerLink]="['/products']"
+						 	also has this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+    							  	 this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';) 	<-- Take the queryParam in the URL and apply the fitler onto the product list..
+	Add Product	-> products/:id/edit		(through [routerLink]="['/products', 0, 'edit']")
+	Log in		-> login			(through [routerLink]="['/login']")
+	Log out		-> welcome			(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
 
 Landing page:
-	localhost:4200	-> ''			(through redirectTo: 'welcome')
+	localhost:4200	-> ''				(through redirectTo: 'welcome')
 
 Page that is not available
-	localhost:4200/s -> '**'		PageNotFoundComponent component.
+	localhost:4200/s -> '**'			PageNotFoundComponent component.
 
 
 All locations for retrieve parameter from url.
