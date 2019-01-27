@@ -332,7 +332,12 @@ Child Routes
 - Feature modules
 - Lazy loading
 
-
+// Absolute path
+<a [routerLink]="['/products', product.id, 'edit', 'info']">Info</a>
+// Relative path
+<a [routerLink]="['info']">Info</a>
+Using an absolute path ties the route activation to the current route hierarchy, so if any levels are later added or changed, each of these paths also need to be changed. 
+Often a better option is to use a relative path. 
 
 
 
@@ -346,8 +351,8 @@ Product edit page:
 	Cancel 		-> products 			(through [routerLink]="['/products']")
 	Save 		-> products 			(through router.navigate(['/products']));)
 	Delete 		-> products 			(through router.navigate(['/products']));)
-	Basic Information -> path: 'products/:id/edit' + path: 'info'	(through XXXX)
-	Search Tags 	  -> path: 'products/:id/edit' + path: 'tags'	(through YYYY)
+	Basic Information -> path: 'products/:id/edit' + path: 'info'	(through [routerLink]="['info']")	<-- Notice there is not / for absolute path
+	Search Tags 	  -> path: 'products/:id/edit' + path: 'tags'	(through [routerLink]="['tags'])	<-- Notice there is not / for absolute path
 
 Product detail page:
 	Back 		-> products 			(through [routerLink]="['/products']"
@@ -379,6 +384,14 @@ Landing page:
 
 Page that is not available
 	localhost:4200/s -> '**'			PageNotFoundComponent component.
+
+
+Alternative syntax from html to ts file:
+=======================================================================================================================
+<a [routerLink]="['/products', product.id, 'edit', 'info']">Info</a>
+=== this.router.navigate(['/products', this.product.id, 'edit', 'info']);
+
+<a [routerLink]="['info']">Info</a> === this.router.navigate(['info'], { relativeTo: this.route });
 
 
 All locations for retrieve parameter from url.
