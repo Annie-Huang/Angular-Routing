@@ -12,6 +12,7 @@ export interface Product {
   imageUrl: string;
 }
 
+// Error is optional
 export interface ProductResolved {
   product: Product;
   error?: any;
