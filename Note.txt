@@ -270,6 +270,19 @@ Example:
 - List component passes its current user selections to the Detail component which passes them back 
 
 
+6. Prefetching Data Using Route Resolvers
+####################################################
+The data defined in the data property cannot change throughout the lifetime of the application, so we use it for static data such as the page title here.
+
+Without a route resolver the component class gets the data after it's initialized. 
+With a route resolver, the resolver service gets the data so the template is not displayed until it has the data it needs. 
+This provides a much cleaner visual appearance, and hence a much nicer user experience.
+
+The ActivatedRouteSnapshot contains information about the currently activated route. We used this snapshot earlier to retrieve route and query parameters. 
+The RouterStateSnapshot represents the state of the application's router at a moment in time. 
+The RouterStateSnapshot is a tree of ActivatedRouteSnapshots.
+
+
 All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
