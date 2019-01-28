@@ -418,8 +418,16 @@ Grouping helps us better organize our routes, especially as an application gets 
 Grouping allows us to share resolvers and other guards. 
 
 
+Checklist: Grouping
+Define routes as children of one parent route
+Specify relative paths
+But grouping alone is not sufficient!
+	As we saw in this module, the router wants to put these child routes into a router-outlet defined in the parent component's template.
 
-
+Checklist: Component-less Routes
+Add a default path that routes to the desired component
+Remove the component from the parent route
+The child routes are displayed in a higher-level outlet
 
 
 All the nevigation links in the this project.
