@@ -14,10 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 // To associate a route resolver with a route, we add it to the route configuration that we define within an Angular module.
 //   This ensures that the data for the route is retrieved using the resolver before the routed component is activated.
 // When the product detail route is activated, this route configuration tells the router to use the resolver service to prefetch the product data.
-@NgModule({
-  imports: [
-    SharedModule,
-    RouterModule.forChild([
+
+/*    RouterModule.forChild([
       {path: 'products', component: ProductListComponent},
       {
         path: 'products/:id',
@@ -40,7 +38,36 @@ import { SharedModule } from '../shared/shared.module';
           }
         ]
       }
-    ])
+    ])*/
+@NgModule({
+  imports: [
+    SharedModule,
+      RouterModule.forChild([
+        {
+          path: 'products',
+          children: [
+            {
+              path: '',
+              component: ProductListComponent
+            },
+            {
+              path: ':id',
+              component: ProductDetailComponent,
+              resolve: { resolvedData: ProductResolver }
+            },
+            {
+              path: ':id/edit',
+              component: ProductEditComponent,
+              resolve: { resolvedData: ProductResolver },
+              children: [
+                { path: '', redirectTo: 'info', pathMatch: 'full' },
+                { path: 'info', component: ProductEditInfoComponent },
+                { path: 'tags', component: ProductEditTagsComponent }
+              ]
+            }
+          ]
+        }
+      ])
   ],
   declarations: [
     ProductListComponent,

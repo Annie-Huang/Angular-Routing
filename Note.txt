@@ -408,6 +408,19 @@ this.route.data.subscribe(
 );
 
 
+8. Grouping and Component-less Routes
+##########################################################
+There is not components for:
+http://localhost:4200/products		(productList is the component http://localhost:4200/products got redirect to)
+Here, we grouped the product routes under a parent that has no component, and hence, no outlet (<router-outlet>).  
+Why should we group routes under a component-less route? 
+Grouping helps us better organize our routes, especially as an application gets larger. 
+Grouping allows us to share resolvers and other guards. 
+
+
+
+
+
 
 All the nevigation links in the this project.
 =======================================================================================================================
