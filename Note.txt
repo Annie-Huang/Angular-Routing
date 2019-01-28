@@ -340,7 +340,9 @@ Using an absolute path ties the route activation to the current route hierarchy,
 Often a better option is to use a relative path. 
 
 
-
+this.product = this.route.snapshot.data['product'];
+this.product = this.route.parent.snapshot.data['product'];
+Recall that this syntax provides a reference to the product data instance, so our parent route and each child route with the reference will share that instance.
 
 
 
@@ -389,9 +391,9 @@ Page that is not available
 Alternative syntax from html to ts file:
 =======================================================================================================================
 <a [routerLink]="['/products', product.id, 'edit', 'info']">Info</a>
-=== this.router.navigate(['/products', this.product.id, 'edit', 'info']);
+=== this.router.navigate(['/products', this.product.id, 'edit', 'info']);	<< absolute path
 
-<a [routerLink]="['info']">Info</a> === this.router.navigate(['info'], { relativeTo: this.route });
+<a [routerLink]="['info']">Info</a> === this.router.navigate(['info'], { relativeTo: this.route });	<< relative path
 
 
 All locations for retrieve parameter from url.
@@ -400,8 +402,13 @@ Product detail page:
 	ngOnInit	-> products/:id		(through route.snapshot.paramMap.get('id');)
 
 Product edit page:
-	ngOnInit	-> products/:id/edit	(through this.route.paramMap.subscribe(params => {const id = +params.get('id');...}))
-
+	ngOnInit	-> (version1) products/:id/edit	(through this.route.paramMap.subscribe(params => {const id = +params.get('id');...}))
+			-> (version2) products/:id/edit (thought this.route.data.subscribe(data => {const resolvedData: ProductResolved = data['resolvedData'];...}))	<-- Prefetch data from its own.
+			-> (version3) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']"
+							 Then redirectTo: 'info'
+							 It means it basically go to [routerLink]="['/products', product.id, 'edit', 'info']"
+							 Then in product-edit-info.component:
+							 this.route.parent.data.subscribe(data => {this.product = data['resolvedData'].product;...}))	<-- Prefetch data from parent's data.
 
 
 this.route.snapshot.paramMap.get('id');
