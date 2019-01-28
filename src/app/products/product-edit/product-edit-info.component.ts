@@ -17,6 +17,12 @@ export class ProductEditInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.parent.data.subscribe(data => {
+      // Do the following in case user switch from edit to add product while the form still have validation error.
+      // E.g. if user product code field empty which is required.
+      if (this.productForm) {
+        this.productForm.reset();
+      }
+
       this.product = data['resolvedData'].product;  // resolvedData is defined in product.module.ts.
     });
   }
