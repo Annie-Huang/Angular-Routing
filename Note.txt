@@ -344,6 +344,21 @@ this.product = this.route.snapshot.data['product'];
 this.product = this.route.parent.snapshot.data['product'];
 Recall that this syntax provides a reference to the product data instance, so our parent route and each child route with the reference will share that instance.
 
+Validating Across Child Routes:
+Option 1: Define the form in the parent component?
+	Parent: <form><router-outlet></form>
+	Child: <input>...</input>
+	An Angular form does not recognize input elements defined within a router-outlet, so if you are using template-driven forms, the input elements never appear in the form's model.
+Option 2: Define a form in each child component?
+	Parent: <router-outlet>
+	Child: <form><input>...</input></form>
+	Only one form is active at a time, so only its validation is known since validation is form based.
+Option 3: Define all of the tab elements in one component?
+	Put the form and all of the tab elements into the product edit component template, then hide and show the different tab elements as needed. 
+	While this would work, it would be more difficult to build and maintain, especially as more tabs are added.
+Option 4: Define a form in each child component, but perform manual validation?
+	Parent: <router-outlet>
+	Child: <form><input>...</input></form>
 
 
 
