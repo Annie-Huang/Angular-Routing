@@ -361,6 +361,53 @@ Option 4: Define a form in each child component, but perform manual validation?
 	Child: <form><input>...</input></form>
 
 
+Child Routes: Configuring
+Add a children array to the parent route
+Define the child routes within that array
+Child paths extend the parent route
+{
+  path: 'products/:id/edit',
+  component: ProductEditComponent,
+  resolve: { product: ProductResolver },
+  children: [
+    { path: 'info', component: ProductEditInfoComponent },
+    { path: 'tags', component: ProductEditTagsComponent }
+  ]
+}
+
+Child Routes: Placing
+Place the child view by defining a 
+RouterOutlet directive in the parent component's template
+<div class="card-body">
+  <div class="wizard">
+    <a [routerLink]="['info']">Info</a>
+    <a [routerLink]="['tags']">Tags</a>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+Child Routes: Activating
+Using an absolute path
+- Start with a slash
+- Define each Url segment
+Using a relative path
+- No starting slash
+- Only the child Url segment
+<a [routerLink]="['/products', product.id, 'edit', 'info']">Info</a>
+<a [routerLink]="['info']">Info</a>
+this.router.navigate(['/products', this.product.id, 'edit', 'info']);
+this.router.navigate(['info'], { relativeTo: this.route });
+
+Child Routes: Obtaining Data
+Read the data from the route
+- Snapshot
+this.product = this.route.snapshot.data['product'];
+- Data Observable
+this.route.data.subscribe(
+  data => this.product = data['product'];
+);
+
+
 
 All the nevigation links in the this project.
 =======================================================================================================================
