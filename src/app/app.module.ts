@@ -24,6 +24,7 @@ import { MessageModule } from './messages/message.module';
 // Redirects can be local or absolute. Local redirects replace a single URL segment with a different one, such as our examples here.
 //   An absolute redirect replaces the entire URL.
 
+// The delay of InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }), is to make sure the spinner will occur during clicking into a product or Edit button in the product list page.
 @NgModule({
   imports: [
     BrowserModule,
