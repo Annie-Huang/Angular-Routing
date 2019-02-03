@@ -449,6 +449,12 @@ The NgClass directive allows you to set the CSS class dynamically for a DOM elem
   }"
 
 
+Active route links cascade down through each level of the route tree, so parent and child router links can be active at the same time. 
+To override this behavior, you can bind to the [routerLinkActiveOptions] input binding with the { exact: true } expression. 
+By using { exact: true }, a given RouterLink will only be active if its URL is an exact match to the current URL.
+
+
+
 
 
 
