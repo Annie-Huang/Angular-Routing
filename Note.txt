@@ -430,6 +430,14 @@ Remove the component from the parent route
 The child routes are displayed in a higher-level outlet
 
 
+9. Styling, Animating, and Watching Routes
+#####################################################################
+https://angular.io/guide/router
+The RouterLinkActive directive toggles css classes for active RouterLink bindings based on the current RouterState.
+
+
+
+
 All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
