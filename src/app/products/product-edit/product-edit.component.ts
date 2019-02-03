@@ -97,7 +97,6 @@ export class ProductEditComponent implements OnInit{
   }
 
   isValid(path?: string): boolean {
-    console.log('path=', path);
     this.validate();
     if (path) {
       return this.dataIsValid[path];

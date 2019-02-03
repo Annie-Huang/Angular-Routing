@@ -501,6 +501,20 @@ this.router.events.subscribe((routerEvent: Event) =>{
 });
 
 
+10. Secondary Routes
+###############################
+Secondary Routes
+Dashboard
+Multi-window user interface
+Notes or comments
+Messages
+…
+
+
+
+
+
+
 All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
