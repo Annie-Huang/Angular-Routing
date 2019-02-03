@@ -513,6 +513,13 @@ Messages
 We must give each secondary router-outlet a name, then we use that name to tell the router to place the secondary content in a specific outlet. 
 We can define any number of secondary outlets at the same level of the hierarchy, but each must have a unique name. 
 
+Note that if we were only going to show messages here in the secondary outlet, we should use a nested component instead. 
+Secondary outlets only make sense if we are going to display multiple routed components within the outlet. 
+For example, we could replace the messages with a product summary when editing the product. 
+
+
+
+
 
 
 
@@ -520,8 +527,8 @@ All the nevigation links in the this project.
 =======================================================================================================================
 Product edit page:
 	Cancel 		-> products 			(through [routerLink]="['/products']")
-	Save 		-> products 			(through router.navigate(['/products']));)
-	Delete 		-> products 			(through router.navigate(['/products']));)
+	Save 		-> products 			(through this.router.navigate(['/products']));)
+	Delete 		-> products 			(through this.router.navigate(['/products']));)
 	Basic Information -> path: 'products/:id/edit' + path: 'info'	(through [routerLink]="['info']")	<-- Notice there is not / for absolute path
 	Search Tags 	  -> path: 'products/:id/edit' + path: 'tags'	(through [routerLink]="['tags'])	<-- Notice there is not / for absolute path
 
@@ -538,8 +545,7 @@ Product list page:
 							 Then redirectTo: 'info')
 
 Message popup:
-	load		-> (old) messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
-			-> (new) messages (with outlet: 'popup')	(through this.router.navigate([{ outlets: { popup: ['messages'] } }]);	<-- Exactly the same as old one except, we want to add extra logic in the method to change display between 'show' and 'hide'.
+	X						(through this.router.navigate([{ outlets: { popup: null} }]);
 
 Login page:
 	Cancel		-> welcome			(through [routerLink]="['/welcome']")
@@ -553,6 +559,11 @@ Header:
 	Add Product	-> products/:id/edit		(through [routerLink]="['/products', 0, 'edit']")
 	Log in		-> login			(through [routerLink]="['/login']")
 	Log out		-> welcome			(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
+
+	Show Messages	-> (old) messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
+			-> (new) messages (with outlet: 'popup')	(through this.router.navigate([{ outlets: { popup: ['messages'] } }]);	<-- Exactly the same as old one except, we want to add extra logic in the method to change display between 'show' and 'hide'.
+	Hide Messages	->						(through this.router.navigate([{ outlets: { popup: null} }]);
+
 
 Landing page:
 	localhost:4200	-> ''				(through redirectTo: 'welcome')
