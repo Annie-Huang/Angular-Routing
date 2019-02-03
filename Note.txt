@@ -510,7 +510,8 @@ Notes or comments
 Messages
 …
 
-
+We must give each secondary router-outlet a name, then we use that name to tell the router to place the secondary content in a specific outlet. 
+We can define any number of secondary outlets at the same level of the hierarchy, but each must have a unique name. 
 
 
 
@@ -535,6 +536,11 @@ Product list page:
 	Edit		-> (old) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
 			-> (new) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']"
 							 Then redirectTo: 'info')
+
+Message popup:
+	load		-> messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
+
+
 
 Login page:
 	Cancel		-> welcome			(through [routerLink]="['/welcome']")
@@ -561,7 +567,12 @@ Alternative syntax from html to ts file:
 <a [routerLink]="['/products', product.id, 'edit', 'info']">Info</a>
 === this.router.navigate(['/products', this.product.id, 'edit', 'info']);	<< absolute path
 
-<a [routerLink]="['info']">Info</a> === this.router.navigate(['info'], { relativeTo: this.route });	<< relative path
+<a [routerLink]="['info']">Info</a> 
+=== this.router.navigate(['info'], { relativeTo: this.route });	<< relative path
+
+
+
+
 
 
 All locations for retrieve parameter from url.

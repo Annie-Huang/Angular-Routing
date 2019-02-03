@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MessageComponent } from './message.component';
 import {RouterModule} from "@angular/router";
 
+// http://localhost:4200/welcome(popup:messages)
+// Login to the page will show login info in the messages component
 @NgModule({
   imports: [
     SharedModule,
