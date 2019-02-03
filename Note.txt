@@ -435,6 +435,20 @@ The child routes are displayed in a higher-level outlet
 https://angular.io/guide/router
 The RouterLinkActive directive toggles css classes for active RouterLink bindings based on the current RouterState.
 
+The NgStyle directive lets you set a given DOM elements style properties.
+[ngStyle]="{'background-color':'green'}"
+[ngStyle]="{'color':getColor(person.country)}"
+
+
+The NgClass directive allows you to set the CSS class dynamically for a DOM element.
+[ngClass]="{'text-success':true}"
+[ngClass]="{
+    'text-success':person.country === 'UK',
+    'text-primary':person.country === 'USA',
+    'text-danger':person.country === 'HK'
+  }"
+
+
 
 
 
