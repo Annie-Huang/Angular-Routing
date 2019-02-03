@@ -454,6 +454,18 @@ To override this behavior, you can bind to the [routerLinkActiveOptions] input b
 By using { exact: true }, a given RouterLink will only be active if its URL is an exact match to the current URL.
 
 
+These routing events include 
+NavigationStart, which is triggered when navigation begins, 
+RoutesRecognized, which is triggered when the router has found a valid path in the configuration that matches the parsed URL, 
+NavigationEnd, which is triggered when navigation ends successfully, 
+NavigationCancel, triggered when navigation is canceled such as by a routing guard or redirect. We'll talk more about routing guards a little later in this course. And, of course, 
+NavigationError, which is triggered when navigation fails. 
+
+Add { enableTracing: true } and check it in chrome developer tool.
+
+
+
+
 
 
 
