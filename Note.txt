@@ -539,8 +539,7 @@ Product list page:
 
 Message popup:
 	load		-> (old) messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
-			-> (new)					(through 
-
+			-> (new) messages (with outlet: 'popup')	(through this.router.navigate([{ outlets: { popup: ['messages'] } }]);	<-- Exactly the same as old one except, we want to add extra logic in the method to change display between 'show' and 'hide'.
 
 Login page:
 	Cancel		-> welcome			(through [routerLink]="['/welcome']")
