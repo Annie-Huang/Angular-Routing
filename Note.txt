@@ -538,8 +538,8 @@ Product list page:
 							 Then redirectTo: 'info')
 
 Message popup:
-	load		-> messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
-
+	load		-> (old) messages (with outlet: 'popup')	(through [routerLink]="[{ outlets: { popup: ['messages'] } }]"
+			-> (new)					(through 
 
 
 Login page:
