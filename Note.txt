@@ -464,10 +464,41 @@ NavigationError, which is triggered when navigation fails.
 Add { enableTracing: true } and check it in chrome developer tool.
 
 
+Checklist: Styling
+Style the active route using the routerLinkActivedirective
+For an exact path match use routerLinkActiveOptions
+<a [routerLink]="['info']" routerLinkActive="active">
+  Basic Information
+</a>
+<a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+  ...
+</a>
 
+Checklist: Animating
+Import BrowserAnimationsModule
+Define the animation
+Register the animation
+Trigger the animation on the router outlet
 
+Checklist: Watching Events
+Enable tracing to watch routing events in the console
+Add enableTracingto the route configuration
+imports: [
+  RouterModule.forRoot([
+    { path: 'welcome', component: WelcomeComponent },
+  ...
+], { enableTracing: true })
+],
+...
 
-
+Checklist: Reacting to Events
+Subscribe to the Router's events observable
+Check the event type as needed
+this.router.events.subscribe((routerEvent: Event) =>{
+  if(routerEvent instanceofNavigationStart) {
+    ...
+  }
+});
 
 
 All the nevigation links in the this project.
