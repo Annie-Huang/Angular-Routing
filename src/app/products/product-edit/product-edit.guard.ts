@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ProductEditComponent } from "./product-edit.component";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductEditGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+export class ProductEditGuard implements CanDeactivate<ProductEditComponent> {
+  // Love Intellij Intellisen
+  canDeactivate(
+    component: ProductEditComponent,
+    currentRoute: ActivatedRouteSnapshot,
+    currentState: RouterStateSnapshot,
+    nextState?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return undefined;
   }
+
 }
