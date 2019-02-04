@@ -46,7 +46,7 @@ import {AuthGuard} from "../user/auth.guard";
       RouterModule.forChild([
         {
           path: 'products',
-          canActivate: [AuthGuard],
+          // canActivate: [AuthGuard], // Temperately comment this out for easy navigation.
           children: [
             {
               path: '',

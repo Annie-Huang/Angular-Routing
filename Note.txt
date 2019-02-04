@@ -579,7 +579,7 @@ CREATE src/app/user/auth.guard.ts (414 bytes)
 
 
 
-All the nevigation links in the this project.
+All the nevigation links in the this project. (remember to uncomment 'canActivate: [AuthGuard],' in product.module.ts to activate route guard.
 =======================================================================================================================
 Product edit page:
 	Cancel 		-> products 			(through [routerLink]="['/products']")
