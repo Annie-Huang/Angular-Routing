@@ -572,8 +572,17 @@ D:\react\Angular-Routing>ng generate guard user/auth --dry-run
 CREATE src/app/user/auth.guard.spec.ts (346 bytes)
 CREATE src/app/user/auth.guard.ts (414 bytes)
 
+The canActivateChild guard is called anytime the URL changes and matches the associated child route, even if only the route parameters change.
+The key difference between the canActivate guard and the canActivateChild guard is that the canActivate guard will not re-execute if only the child route is changed.
 
+If the user is on the Product List page and clicks the Add Product menu option, only the child route changes. <-- Check product.module.ts
+The canActivate guards on the parent route are not executed again, but any canActivateChild guards are. 
 
+Same thing for our tabs. Any canActivate guards on the parent product edit route are not re-executed when changing tabs, but any canActivateChild guards are. 
+Building a canActivateChild guard is very similar to building a canActivate guard, so we won't walk through an example here.
+
+Note that the canDeactivate only works when navigating within the Angular application. 
+It does not check the guard if the user navigates to an entirely different site or closes the browser. 
 
 
 
