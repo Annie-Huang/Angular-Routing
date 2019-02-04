@@ -552,6 +552,31 @@ Clear a secondary route using an object and setting its outlets property
 this.router.navigate([{ outlets: { popup: null} }]);
 
 
+11. Route Guards
+########################
+we require that the user log in before accessing a specific route. 
+We may want to warn the user before leaving a route, such as asking whether to save before navigating away from an edit page with unsaved changes. 
+We may want to retrieve data before accessing a route. 
+
+The router first executes the canDeactivate guards for the current route to determine whether the user can leave that route. 
+If a feature module is loaded asynchronously, as we discuss in the next module, the canLoad route guard is checked before the module is loaded. 
+The router then checks the canActivateChild guards and then the canActivate guards. 
+After all other route guards are checked, then the resolvers are executed. 
+
+In this example, the method is canActivate. 
+For simple cases, this method can return a Boolean value, true to activate the route, and false to cancel the route activation. 
+For more complex cases, we could return an observable or a promise from this method. 
+If the return value is a promise or an observable, the router will wait for that promise or observable to complete before proceeding with the navigation. 
+
+D:\react\Angular-Routing>ng generate guard user/auth --dry-run
+CREATE src/app/user/auth.guard.spec.ts (346 bytes)
+CREATE src/app/user/auth.guard.ts (414 bytes)
+
+
+
+
+
+
 
 
 All the nevigation links in the this project.
