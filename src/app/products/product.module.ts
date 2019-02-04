@@ -10,6 +10,7 @@ import { ProductEditTagsComponent } from "./product-edit/product-edit-tags.compo
 import { ProductResolver } from "./product-resolver.service";
 
 import { SharedModule } from '../shared/shared.module';
+import {AuthGuard} from "../user/auth.guard";
 
 // To associate a route resolver with a route, we add it to the route configuration that we define within an Angular module.
 //   This ensures that the data for the route is retrieved using the resolver before the routed component is activated.
@@ -45,6 +46,7 @@ import { SharedModule } from '../shared/shared.module';
       RouterModule.forChild([
         {
           path: 'products',
+          canActivate: [AuthGuard],
           children: [
             {
               path: '',

@@ -588,31 +588,48 @@ Product edit page:
 	Basic Information -> path: 'products/:id/edit' + path: 'info'	(through [routerLink]="['info']")	<-- Notice there is not / for absolute path
 	Search Tags 	  -> path: 'products/:id/edit' + path: 'tags'	(through [routerLink]="['tags'])	<-- Notice there is not / for absolute path
 
+-----------------------------
+
 Product detail page:
 	Back 		-> products 			(through [routerLink]="['/products']"
 							 	 queryParamsHandling="preserve")	<-- Keep the current queryParams in the URL when going to product list page.
 	Edit		-> products/:id/edit		(through [routerLink]="['/products', product.id, 'edit']")
 
+-----------------------------
+
 Product list page:
 	productName	-> products/:id			(through [routerLink]="['/products', product.id]"
 							 	 [queryParams]="{filterBy: listFilter, showImage: showImage}")	<-- Add queryParams into the URL to pass product detail page.
+			-> products/:id	(without login)	this.router.navigate(['/login']);	<-- Do it as part of auth.guard.ts	
+
 	Edit		-> (old) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']")
 			-> (new) products/:id/edit	(through [routerLink]="['/products', product.id, 'edit']"
 							 Then redirectTo: 'info')
+			-> (new) products/:id/edit (without login) 	this.router.navigate(['/login']);	<-- Do it as part of auth.guard.ts	
+
+-----------------------------
 
 Message popup:
 	X						(through this.router.navigate([{ outlets: { popup: null} }]);
 
+-----------------------------
+
 Login page:
 	Cancel		-> welcome			(through [routerLink]="['/welcome']")
 	Log in		-> products			(through router.navigate(['/products']);)
+
+-----------------------------
 
 Header:
 	Home		-> welcome			(through [routerLink]="['/welcome']")
 	Product List	-> products 			(through [routerLink]="['/products']"
 						 	also has this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
     							  	 this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';) 	<-- Take the queryParam in the URL and apply the fitler onto the product list..
-	Add Product	-> products/:id/edit		(through [routerLink]="['/products', 0, 'edit']")
+			-> products (without login)	this.router.navigate(['/login']);	<-- Do it as part of auth.guard.ts
+
+	Add Product	-> products/:id/edit			(through [routerLink]="['/products', 0, 'edit']")
+			-> products/:id/edit (without login)	this.router.navigate(['/login']);	<-- Do it as part of auth.guard.ts
+
 	Log in		-> login			(through [routerLink]="['/login']")
 	Log out		-> welcome			(through router.navigateByUrl('/welcome');)	<-- Need to use navigateByUrl to clear all secondardy routing.
 
@@ -620,12 +637,20 @@ Header:
 			-> (new) messages (with outlet: 'popup')	(through this.router.navigate([{ outlets: { popup: ['messages'] } }]);	<-- Exactly the same as old one except, we want to add extra logic in the method to change display between 'show' and 'hide'.
 	Hide Messages	->						(through this.router.navigate([{ outlets: { popup: null} }]);
 
+-----------------------------
 
 Landing page:
 	localhost:4200	-> ''				(through redirectTo: 'welcome')
 
+-----------------------------
+
 Page that is not available
 	localhost:4200/s -> '**'			PageNotFoundComponent component.
+
+-----------------------------
+
+
+
 
 
 Alternative syntax from html to ts file:
