@@ -584,6 +584,9 @@ Building a canActivateChild guard is very similar to building a canActivate guar
 Note that the canDeactivate only works when navigating within the Angular application. 
 It does not check the guard if the user navigates to an entirely different site or closes the browser. 
 
+D:\react\Angular-Routing>ng generate guard products/product-edit/product-edit --dry-run
+CREATE src/app/products/product-edit/product-edit.guard.spec.ts (389 bytes)
+CREATE src/app/products/product-edit/product-edit.guard.ts (421 bytes)
 
 
 
