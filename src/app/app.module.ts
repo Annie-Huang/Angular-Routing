@@ -40,7 +40,8 @@ import { MessageModule } from './messages/message.module';
     // // so the wildcard path matches every path that is not the welcome or empty path, preventing navigation to any other path below it.
     // //   We need to reorder our imports array to ensure that our wildcard route is last in the list of route paths.
     // AppRoutingModule,
-    ProductModule,
+    // // Lazy loading prerequisite of 3: 'Not imported in another module' is met:
+    // ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule

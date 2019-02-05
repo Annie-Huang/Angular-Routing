@@ -48,6 +48,7 @@ import {ProductEditGuard} from "./product-edit/product-edit.guard";
         {
           path: 'products',
           // canActivate: [AuthGuard], // Temperately comment this out for easy navigation.
+          // Lazy loading prerequisite of 2: 'Routes grouped under a single parent' is met:
           children: [
             {
               path: '',
@@ -73,6 +74,7 @@ import {ProductEditGuard} from "./product-edit/product-edit.guard";
         }
       ])
   ],
+  // Lazy loading prerequisite of 1: 'Use a feature module' is met:
   declarations: [
     ProductListComponent,
     ProductDetailComponent,

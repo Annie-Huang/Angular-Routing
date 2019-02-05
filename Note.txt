@@ -602,6 +602,11 @@ Add the guard to a route
 
 
 
+12. Lazy Loading
+########################
+First impressions matter. We want to minimize the time between the user's request for our application and the display of its first template.
+
+
 
 
 
