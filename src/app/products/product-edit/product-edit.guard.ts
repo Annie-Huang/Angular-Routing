@@ -13,7 +13,12 @@ export class ProductEditGuard implements CanDeactivate<ProductEditComponent> {
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return undefined;
+
+    if (component.isDirty) {
+      const productName = component.product.productName || 'New Product';
+      return confirm(`Navigate away and lose all changes to ${productName}?`);
+    }
+    return true;
   }
 
 }

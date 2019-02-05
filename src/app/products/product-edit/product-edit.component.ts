@@ -15,8 +15,27 @@ export class ProductEditComponent implements OnInit{
   pageTitle = 'Product Edit';
   errorMessage: string;
 
-  product: Product;
+  // product: Product;
   private dataIsValid: {[key: string]: boolean} = {};
+
+  get isDirty(): boolean {
+    return JSON.stringify(this.originalProduct) !== JSON.stringify(this.currentProduct);
+  }
+
+  private currentProduct: Product;
+  private originalProduct: Product;
+
+  get product(): Product {
+    return this.currentProduct;
+  }
+  // Product will only be set once, during the intial stage when we assign resolvedData.product to this.product.
+  // Other time when user enter new value about product name, product code etc in the form, it will just change
+  // a particular product property, not the entire project object.
+  set product(value: Product) {
+    this.currentProduct = value;
+    // Clone the object to retain a copy
+    this.originalProduct = value ? { ...value } : null;
+  }
 
   constructor(private productService: ProductService,
               private messageService: MessageService,
