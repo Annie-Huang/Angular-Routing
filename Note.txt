@@ -589,6 +589,20 @@ CREATE src/app/products/product-edit/product-edit.guard.spec.ts (389 bytes)
 CREATE src/app/products/product-edit/product-edit.guard.ts (421 bytes)
 
 
+Route Guards Checklist: Building
+Build a service
+Implement the guard type
+Create the associated method
+Add the guard to a route
+            {
+              path: ':id',
+	      canActivate: [AuthGuard],
+              component: ProductDetailComponent
+            },
+
+
+
+
 
 
 All the nevigation links in the this project. (remember to uncomment 'canActivate: [AuthGuard],' in product.module.ts to activate route guard.
