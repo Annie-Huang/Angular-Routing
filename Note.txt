@@ -613,6 +613,8 @@ That's because lazy loading is configured on the parent route path. The module f
 
 Lazy loading is especially useful for features that are not often accessed or are only accessed by specific users.
 
+Preloading makes sense if we know that the module features will most likely be used. It is less useful for modules that are seldom used or only accessible to specific users such as an application admin feature. 
+
 
 
 
