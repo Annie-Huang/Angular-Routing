@@ -41,37 +41,60 @@ import {ProductEditGuard} from "./product-edit/product-edit.guard";
         ]
       }
     ])*/
+// RouterModule.forChild([
+//   {
+//     path: 'products',  // Cannot have products in here. Otherwise it will become, e.g. /products/products:id
+//     // canActivate: [AuthGuard], // Temperately comment this out for easy navigation.
+//     // Lazy loading prerequisite of 2: 'Routes grouped under a single parent' is met:
+//     children: [
+//       {
+//         path: '',
+//         component: ProductListComponent
+//       },
+//       {
+//         path: ':id',
+//         component: ProductDetailComponent,
+//         resolve: { resolvedData: ProductResolver }
+//       },
+//       {
+//         path: ':id/edit',
+//         component: ProductEditComponent,
+//         canDeactivate: [ProductEditGuard],
+//         resolve: { resolvedData: ProductResolver },
+//         children: [
+//           { path: '', redirectTo: 'info', pathMatch: 'full' },
+//           { path: 'info', component: ProductEditInfoComponent },
+//           { path: 'tags', component: ProductEditTagsComponent }
+//         ]
+//       }
+//     ]
+//   }
+// ])
 @NgModule({
   imports: [
     SharedModule,
       RouterModule.forChild([
         {
-          path: 'products',
-          // canActivate: [AuthGuard], // Temperately comment this out for easy navigation.
-          // Lazy loading prerequisite of 2: 'Routes grouped under a single parent' is met:
+          path: '',
+          component: ProductListComponent
+        },
+        {
+          path: ':id',
+          component: ProductDetailComponent,
+          resolve: { resolvedData: ProductResolver }
+        },
+        {
+          path: ':id/edit',
+          component: ProductEditComponent,
+          canDeactivate: [ProductEditGuard],
+          resolve: { resolvedData: ProductResolver },
           children: [
-            {
-              path: '',
-              component: ProductListComponent
-            },
-            {
-              path: ':id',
-              component: ProductDetailComponent,
-              resolve: { resolvedData: ProductResolver }
-            },
-            {
-              path: ':id/edit',
-              component: ProductEditComponent,
-              canDeactivate: [ProductEditGuard],
-              resolve: { resolvedData: ProductResolver },
-              children: [
-                { path: '', redirectTo: 'info', pathMatch: 'full' },
-                { path: 'info', component: ProductEditInfoComponent },
-                { path: 'tags', component: ProductEditTagsComponent }
-              ]
-            }
+            { path: '', redirectTo: 'info', pathMatch: 'full' },
+            { path: 'info', component: ProductEditInfoComponent },
+            { path: 'tags', component: ProductEditTagsComponent }
           ]
         }
+
       ])
   ],
   // Lazy loading prerequisite of 1: 'Use a feature module' is met:

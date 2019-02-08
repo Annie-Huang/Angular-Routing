@@ -606,6 +606,12 @@ Add the guard to a route
 ########################
 First impressions matter. We want to minimize the time between the user's request for our application and the display of its first template.
 
+D:\react\Angular-Routing>ng serve -o --prod
+
+Another requirement for lazy loading is that the routes are grouped as children of a single parent route. 
+That's because lazy loading is configured on the parent route path. The module for that route path is then loaded asynchronously.
+
+Lazy loading is especially useful for features that are not often accessed or are only accessed by specific users.
 
 
 
