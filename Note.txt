@@ -617,6 +617,31 @@ Preloading makes sense if we know that the module features will most likely be u
 It is less useful for modules that are seldom used or only accessible to specific users such as an application admin feature. 
 
 
+Lazy Loading Checklist: Preparing
+Use a feature module
+Group routes under a single parent
+Don't import feature module
+
+Lazy Loading Checklist: Configuring
+Set it to:
+- The full path to the module
+- A hash
+- And the module's class name
+{
+  path: 'products',
+  loadChildren: './products/product.module#ProductModule'
+}
+
+Lazy Loading Checklist: Preloading
+Preload all modules with PreloadAllModules
+Or build a custom preloading strategy service
+RouterModule.forRoot([
+  {
+    path: 'products',
+    loadChildren: './products/product.module#ProductModule'
+  },
+  ...
+], { preloadingStrategy: PreloadAllModules })
 
 
 All the nevigation links in the this project. (remember to uncomment 'canActivate: [AuthGuard],' in product.module.ts to activate route guard.
