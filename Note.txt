@@ -644,6 +644,10 @@ RouterModule.forRoot([
 ], { preloadingStrategy: PreloadAllModules })
 
 
+
+
+
+
 All the nevigation links in the this project. (remember to uncomment 'canActivate: [AuthGuard],' in product.module.ts to activate route guard.
 =======================================================================================================================
 Product edit page:
